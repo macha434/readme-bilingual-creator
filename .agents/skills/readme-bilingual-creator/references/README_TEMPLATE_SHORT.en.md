@@ -29,6 +29,8 @@ cd <repository-name>
 <run-command>
 ```
 
+Add only commands that actually exist in the repository. If the repository has project-specific commands, explain what each command does and when to run it.
+
 ## Usage
 
 ```bash
@@ -39,12 +41,16 @@ Or open:
 
 `http://localhost:<port>`
 
+If there are multiple entrypoint commands, list each command separately and explain the purpose of each one.
+
 ## Development
 
 ```bash
 <lint-command>
 <test-command>
 ```
+
+Prefer real, executable development commands. If the repository includes custom scripts, task runners, or project-specific commands, document their behavior in plain language instead of only listing command names.
 
 ## FAQ
 
