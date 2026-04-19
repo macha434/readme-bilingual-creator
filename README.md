@@ -31,11 +31,49 @@ git clone https://github.com/macha434/readme-bilingual-creator.git
 cd readme-bilingual-creator
 ```
 
-No install step is required. The repository contents are plain Markdown skill and template files.
+For repository development, no install step is required. The source repository contents are plain Markdown skill and template files.
+
+To install the bundled skills into your home directory with pnpm:
+
+```bash
+pnpm dlx @macha434/readme-bilingual-creator install
+```
 
 ## Usage
 
-Use the included templates as the basis for project documentation:
+To install the bundled skills into your home directory:
+
+```bash
+pnpm dlx @macha434/readme-bilingual-creator install
+```
+
+Useful variants:
+
+```bash
+pnpm dlx @macha434/readme-bilingual-creator install --dry-run
+pnpm dlx @macha434/readme-bilingual-creator install --force
+pnpm dlx @macha434/readme-bilingual-creator install --agents-only
+pnpm dlx @macha434/readme-bilingual-creator install --claude-only
+```
+
+Command details:
+
+| Command | What it does |
+| --- | --- |
+| `install` | Installs both bundled skill directories into your home directory. |
+| `install --dry-run` | Prints the target paths and planned actions without writing files. |
+| `install --force` | Overwrites an existing installed skill directory. |
+| `install --agents-only` | Installs only the `~/.agents` skill tree. |
+| `install --claude-only` | Installs only the `~/.claude` skill tree. |
+
+The installer writes to:
+
+- `~/.agents/skills/readme-bilingual-creator/`
+- `~/.claude/skills/readme-bilingual-creator/`
+
+By default, the installer stops if the target skill directory already exists. Use `--force` only when you want to overwrite the installed copy.
+
+The repository also includes the raw templates and skill sources. Use the included templates as the basis for project documentation:
 
 - `.agents/skills/readme-bilingual-creator/references/README_TEMPLATE_SHORT.en.md`
 - `.agents/skills/readme-bilingual-creator/references/README_TEMPLATE_SHORT.ja.md`
@@ -60,15 +98,25 @@ This keeps the English and Japanese versions easy to align while still covering 
 ## Development
 
 ```bash
+node ./bin/readme-bilingual-creator.cjs install --dry-run
 git diff
 git status
 ```
+
+Repository-specific commands:
+
+| Command | What it does |
+| --- | --- |
+| `node ./bin/readme-bilingual-creator.cjs install --dry-run` | Checks what the installer would place under `~/.agents` and `~/.claude` without writing files. |
+| `git diff` | Reviews local changes before publishing or committing. |
+| `git status` | Confirms which files are modified, staged, or untracked. |
 
 When updating the templates or skills:
 
 - keep `README.md` as the primary English document
 - keep `README.ja.md` as the Japanese counterpart
 - preserve matching section order across both languages
+- keep the packaged installer in sync with the bundled `.agents` and `.claude` source trees
 
 ## Security
 

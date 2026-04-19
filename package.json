@@ -1,0 +1,33 @@
+{
+  "name": "@macha434/readme-bilingual-creator",
+  "version": "0.1.0",
+  "description": "Install the README bilingual creator skills into ~/.agents and ~/.claude.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macha434/readme-bilingual-creator.git"
+  },
+  "homepage": "https://github.com/macha434/readme-bilingual-creator#readme",
+  "bugs": {
+    "url": "https://github.com/macha434/readme-bilingual-creator/issues"
+  },
+  "bin": {
+    "readme-bilingual-creator": "./bin/readme-bilingual-creator.cjs"
+  },
+  "files": [
+    "bin",
+    ".agents/skills/readme-bilingual-creator",
+    ".claude/skills/readme-bilingual-creator",
+    "README.md",
+    "README.ja.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20.18.0",
+    "pnpm": ">=10.33.0"
+  },
+  "packageManager": "pnpm@10.33.0",
+  "publishConfig": {
+    "access": "public"
+  }
+}

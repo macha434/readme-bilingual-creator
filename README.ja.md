@@ -31,11 +31,49 @@ git clone https://github.com/macha434/readme-bilingual-creator.git
 cd readme-bilingual-creator
 ```
 
-インストールは不要で、そのまま Markdown のテンプレートとスキル定義を参照できる。
+リポジトリを開発するだけであればインストールは不要で、そのまま Markdown のテンプレートとスキル定義を参照できる。
+
+同梱されたスキルをホームディレクトリへ配置するには、次を実行する。
+
+```bash
+pnpm dlx @macha434/readme-bilingual-creator install
+```
 
 ## 使い方
 
-README の土台として、次のテンプレートを使う。
+同梱されたスキルをホームディレクトリへ配置するには、次を実行する。
+
+```bash
+pnpm dlx @macha434/readme-bilingual-creator install
+```
+
+主な派生コマンドは次のとおりである。
+
+```bash
+pnpm dlx @macha434/readme-bilingual-creator install --dry-run
+pnpm dlx @macha434/readme-bilingual-creator install --force
+pnpm dlx @macha434/readme-bilingual-creator install --agents-only
+pnpm dlx @macha434/readme-bilingual-creator install --claude-only
+```
+
+各コマンドの内容は次のとおりである。
+
+| コマンド | 内容 |
+| --- | --- |
+| `install` | 同梱された 2 つのスキルディレクトリをホームディレクトリへ配置する。 |
+| `install --dry-run` | ファイルを書き込まず、配置先と予定動作だけを表示する。 |
+| `install --force` | 既に配置済みの同名スキルディレクトリを上書きする。 |
+| `install --agents-only` | `~/.agents` 側のスキルツリーだけを配置する。 |
+| `install --claude-only` | `~/.claude` 側のスキルツリーだけを配置する。 |
+
+インストーラの配置先は次のとおりである。
+
+- `~/.agents/skills/readme-bilingual-creator/`
+- `~/.claude/skills/readme-bilingual-creator/`
+
+標準動作では、対象のスキルディレクトリが既に存在する場合は停止する。既存の配置を上書きしたい場合のみ `--force` を使う。
+
+リポジトリに含まれる生のテンプレートとスキル定義を直接使うこともできる。README の土台として、次のテンプレートを使う。
 
 - `.agents/skills/readme-bilingual-creator/references/README_TEMPLATE_SHORT.en.md`
 - `.agents/skills/readme-bilingual-creator/references/README_TEMPLATE_SHORT.ja.md`
@@ -60,15 +98,25 @@ AI コーディングアシスタントに README 作成や更新を任せたい
 ## 開発
 
 ```bash
+node ./bin/readme-bilingual-creator.cjs install --dry-run
 git diff
 git status
 ```
+
+このリポジトリで使う主なコマンドの内容は次のとおりである。
+
+| コマンド | 内容 |
+| --- | --- |
+| `node ./bin/readme-bilingual-creator.cjs install --dry-run` | `~/.agents` と `~/.claude` に何を配置するかを、書き込みなしで確認する。 |
+| `git diff` | 公開やコミットの前にローカル差分を確認する。 |
+| `git status` | 変更済み、ステージ済み、未追跡のファイルを確認する。 |
 
 テンプレートやスキルを更新する際の基本方針は次のとおりである。
 
 - `README.md` を英語版の主ファイルにする
 - `README.ja.md` を日本語版の対になるファイルにする
 - 両言語で見出し順とセクション対応をそろえる
+- パッケージ化したインストーラと `.agents` / `.claude` の同梱資産を常に同期させる
 
 ## セキュリティ
 
