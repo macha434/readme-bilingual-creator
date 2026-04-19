@@ -1,0 +1,4 @@
+interface:
+  display_name: "README Bilingual Creator"
+  short_description: "短版テンプレで英語メイン・日本語サブの README を作る"
+  default_prompt: "このリポジトリ向けに英語READMEと日本語READMEを作って"
